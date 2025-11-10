@@ -19,6 +19,6 @@ impl From<io::Error> for Error {
 
 pub fn log_err<T: ToString>(err: T) -> String {
     let e_str = format!("Error: {}", err.to_string());
-    println!("{}", e_str);
+    println!("{e_str}");
     e_str
 }

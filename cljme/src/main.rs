@@ -23,7 +23,7 @@ fn main() -> Result<(), io::Error> {
                     .to_str()
                     .unwrap_or("");
                 if !identify_jpg(&file_path).unwrap_or_else(|e1| {
-                    println!("File: {} ERR: {}: ", file_name, e1);
+                    println!("File: {file_name} ERR: {e1}: ");
                     false
                 }) {
                     continue;
@@ -37,7 +37,7 @@ fn main() -> Result<(), io::Error> {
                     .open(&tmp_path)
                     .map_err(|e2| io::Error::new(ErrorKind::Other, e2))?;
 
-                println!("TEMP File create new OK: {}", tmp_path);
+                println!("TEMP File create new OK: {tmp_path}");
 
                 let mut reader = BufReader::new(File::open(file_name)?);
 
@@ -48,7 +48,7 @@ fn main() -> Result<(), io::Error> {
                     .map_err(|e2| io::Error::new(ErrorKind::Other, format!("{:?}", e2)))?;
             }
         }
-        Err(e) => panic!("Ошибка чтения директории:{}", e),
+        Err(e) => panic!("Ошибка чтения директории:{e}"),
     }
 
     Ok(())
